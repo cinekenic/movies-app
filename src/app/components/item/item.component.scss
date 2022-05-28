@@ -2,7 +2,7 @@
 .movie-item {
   position: relative;
   display: block;
-  min-height: 300px;
+  min-height: 325px;
   border-radius: 5px;
   background-color: $bgColorLight;
   border: 1px solid $lightGray;
@@ -31,7 +31,11 @@
     }
   }
   &-title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     font-weight: bold;
+    height: 30px;
     margin: 0.5rem;
   }
 }

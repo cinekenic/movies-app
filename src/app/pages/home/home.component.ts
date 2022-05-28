@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarModule } from 'primeng/calendar';
 import { Movie } from '../../models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
+import { TvService } from 'src/app/services/tv.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   popularMovie: Movie[] = [];
   topRatedMovie: Movie[] = [];
   upcomingMovie: Movie[] = [];
-  constructor(private movieService: MoviesService) {}
+  tvTopRated: Movie[] = [];
+
+  constructor(private movieService: MoviesService, private tv: TvService) {}
 
   ngOnInit(): void {
     this.movieService.getMovies('popular').subscribe((response: any) => {
@@ -24,6 +26,9 @@ export class HomeComponent implements OnInit {
     });
     this.movieService.getMovies('upcoming').subscribe((response: any) => {
       this.upcomingMovie = response.results;
+    });
+    this.tv.getMovies('top_rated').subscribe((response: any) => {
+      this.tvTopRated = response.results;
     });
   }
 }
