@@ -9,7 +9,6 @@ import { TvService } from 'src/app/services/tv.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  // movies: any = [];
   popularMovie: Movie[] = [];
   topRatedMovie: Movie[] = [];
   upcomingMovie: Movie[] = [];
@@ -18,17 +17,17 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MoviesService, private tv: TvService) {}
 
   ngOnInit(): void {
-    this.movieService.getMovies('popular').subscribe((response: any) => {
-      this.popularMovie = response.results;
+    this.movieService.getMovies('popular').subscribe((movies) => {
+      this.popularMovie = movies;
     });
-    this.movieService.getMovies('top_rated').subscribe((response: any) => {
-      this.topRatedMovie = response.results;
+    this.movieService.getMovies('top_rated').subscribe((movies) => {
+      this.topRatedMovie = movies;
     });
-    this.movieService.getMovies('upcoming').subscribe((response: any) => {
-      this.upcomingMovie = response.results;
+    this.movieService.getMovies('upcoming').subscribe((movies) => {
+      this.upcomingMovie = movies;
     });
-    this.tv.getMovies('top_rated').subscribe((response: any) => {
-      this.tvTopRated = response.results;
-    });
+    // this.tv.getMovies('top_rated').subscribe((response) => {
+    //   this.tvTopRated = response;
+    // });
   }
 }
