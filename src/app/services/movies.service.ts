@@ -35,6 +35,16 @@ export class MoviesService {
     );
   }
 
+  getMoviesByGenre(genreId: string, page: number) {
+    return this.http
+      .get<MovieDto>(`${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.apiKey}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
+  }
+
   getMoviesImages(id: string) {
     return this.http.get<movieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
   }
@@ -44,7 +54,7 @@ export class MoviesService {
   }
 
   getSimilarMovie(id: string) {
-    return this.http.get<SimilarMovies>(`${this.baseUrl}/movie/${id}/similar?api_key=${this.apiKey}`);
+    return this.http.get<MovieDto>(`${this.baseUrl}/movie/${id}/similar?api_key=${this.apiKey}`);
   }
 
   getMovie(id: string) {

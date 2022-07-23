@@ -13,6 +13,7 @@ export class GenresComponent implements OnInit {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
+    console.log('genre');
     this.moviesService.getMoviesGentes().subscribe((genresData) => {
       this.genres = genresData;
     });
