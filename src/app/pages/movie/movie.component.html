@@ -62,4 +62,32 @@
       </div>
     </p-tabPanel>
   </p-tabView>
+
+  <div class="actor">
+    <span> Similar Films </span>
+  </div>
+  <p-carousel *ngIf="similarMovies" [value]="similarMovies.results" [numVisible]="5">
+    <ng-template let-similar pTemplate="item">
+      <div class="actor">
+        <img [src]="imagesSizes.medium + similar.poster_path" alt="" />
+        <span>
+          {{ similar.title }}
+        </span>
+      </div>
+    </ng-template>
+  </p-carousel>
+
+  <div class="actor">
+    <span> Actors </span>
+  </div>
+  <p-carousel *ngIf="movieCredits" [value]="movieCredits.cast" [numVisible]="5" [numScroll]="2">
+    <ng-template let-actor pTemplate="item">
+      <div class="actor">
+        <img [src]="imagesSizes.medium + actor.profile_path" alt="" />
+        <span>
+          {{ actor.name }}
+        </span>
+      </div>
+    </ng-template>
+  </p-carousel>
 </ng-container>

@@ -50,3 +50,16 @@ export interface movieImages {
     width: number;
   }[];
 }
+export interface MovieCredits {
+  cast: {
+    name: string;
+    profil_path: string;
+  }[];
+}
+
+export interface SimilarMovies {
+  results: {
+    title: string;
+    poster_path: string;
+  }[];
+}
