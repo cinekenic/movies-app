@@ -14,6 +14,7 @@ export class MoviesService {
   getMovies(type: string = 'upcoming', count: number = 12) {
     return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
       switchMap((res) => {
+        console.log(res);
         return of(res.results.slice(0, count));
       })
     );
@@ -30,6 +31,7 @@ export class MoviesService {
   getMoviesGentes() {
     return this.http.get<GenresDto>(`${this.baseUrl}/genre/movie/list?api_key=${this.apiKey}`).pipe(
       switchMap((res) => {
+        console.log(res);
         return of(res.genres);
       })
     );

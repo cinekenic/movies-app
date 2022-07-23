@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { first } from 'rxjs';
 import { Movie } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 
@@ -16,7 +16,8 @@ export class MoviesComponent implements OnInit {
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.params.pipe(take(1)).subscribe(({ genreId }) => {
+    this.route.params.pipe(first()).subscribe(({ genreId }) => {
+      console.log(genreId);
       if (genreId) {
         this.genreId = genreId;
         this.getMoviesByGenre(genreId, 1);
